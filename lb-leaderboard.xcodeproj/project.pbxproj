@@ -9,22 +9,24 @@
 /* Begin PBXBuildFile section */
 		0B96D03CDBBC775C1B4EA200 /* Pods_lb_leaderboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C622BB8C86C7A23D84D5F10 /* Pods_lb_leaderboard.framework */; };
 		0C208E802203F0EA00D9FC19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C208E7F2203F0EA00D9FC19 /* AppDelegate.swift */; };
-		0C208E822203F0EA00D9FC19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C208E812203F0EA00D9FC19 /* ViewController.swift */; };
 		0C208E852203F0EA00D9FC19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C208E832203F0EA00D9FC19 /* Main.storyboard */; };
 		0C208E872203F0EC00D9FC19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C208E862203F0EC00D9FC19 /* Assets.xcassets */; };
 		0C208E8A2203F0EC00D9FC19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C208E882203F0EC00D9FC19 /* LaunchScreen.storyboard */; };
 		0C208E942203F1B500D9FC19 /* LeadersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C208E932203F1B500D9FC19 /* LeadersTableViewController.swift */; };
+		0C7675872204B2D900EC138B /* LeaderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7675862204B2D900EC138B /* LeaderDetailViewController.swift */; };
+		0C7675892204B3A300EC138B /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7675882204B3A300EC138B /* Leader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C208E7C2203F0EA00D9FC19 /* lb-leaderboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lb-leaderboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C208E7F2203F0EA00D9FC19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C208E812203F0EA00D9FC19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C208E842203F0EA00D9FC19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C208E862203F0EC00D9FC19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C208E892203F0EC00D9FC19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C208E8B2203F0EC00D9FC19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C208E932203F1B500D9FC19 /* LeadersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersTableViewController.swift; sourceTree = "<group>"; };
+		0C7675862204B2D900EC138B /* LeaderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderDetailViewController.swift; sourceTree = "<group>"; };
+		0C7675882204B3A300EC138B /* Leader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leader.swift; sourceTree = "<group>"; };
 		195A6AC236BECE2CCE8D2B2C /* Pods-lb-leaderboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lb-leaderboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lb-leaderboard/Pods-lb-leaderboard.debug.xcconfig"; sourceTree = "<group>"; };
 		6C622BB8C86C7A23D84D5F10 /* Pods_lb_leaderboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lb_leaderboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5C7EABC0416B93900C43FD /* Pods-lb-leaderboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lb-leaderboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-lb-leaderboard/Pods-lb-leaderboard.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,12 +66,13 @@
 			isa = PBXGroup;
 			children = (
 				0C208E7F2203F0EA00D9FC19 /* AppDelegate.swift */,
-				0C208E812203F0EA00D9FC19 /* ViewController.swift */,
 				0C208E832203F0EA00D9FC19 /* Main.storyboard */,
 				0C208E862203F0EC00D9FC19 /* Assets.xcassets */,
 				0C208E882203F0EC00D9FC19 /* LaunchScreen.storyboard */,
 				0C208E8B2203F0EC00D9FC19 /* Info.plist */,
 				0C208E932203F1B500D9FC19 /* LeadersTableViewController.swift */,
+				0C7675862204B2D900EC138B /* LeaderDetailViewController.swift */,
+				0C7675882204B3A300EC138B /* Leader.swift */,
 			);
 			path = "lb-leaderboard";
 			sourceTree = "<group>";
@@ -211,8 +214,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C208E822203F0EA00D9FC19 /* ViewController.swift in Sources */,
+				0C7675892204B3A300EC138B /* Leader.swift in Sources */,
 				0C208E942203F1B500D9FC19 /* LeadersTableViewController.swift in Sources */,
+				0C7675872204B2D900EC138B /* LeaderDetailViewController.swift in Sources */,
 				0C208E802203F0EA00D9FC19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

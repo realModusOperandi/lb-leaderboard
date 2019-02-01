@@ -9,16 +9,9 @@
 import UIKit
 import SwiftyJSON
 
-fileprivate struct LeaderEntry {
-    public let id: String
-    public let name: String
-    public let numWins: Int
-    public let rating: Int
-    public let totalGames: Int
-}
-
 class LeadersTableViewController: UITableViewController {
-    fileprivate var leaders: [LeaderEntry] = []
+    var leaderDetailVC: LeaderDetailViewController? = nil
+    var leaders: [LeaderEntry] = []
     
     func fetchData() {
         
@@ -54,6 +47,10 @@ class LeadersTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                if !self.splitViewController!.isCollapsed && self.tableView.indexPathForSelectedRow == nil && self.leaders.count > 0 {
+                    self.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+                    self.performSegue(withIdentifier: "showDetail", sender: self)
+                }
             }
         })
         
@@ -65,8 +62,30 @@ class LeadersTableViewController: UITableViewController {
         super.viewDidLoad()
         
         title = "Rating Leaders"
+        
+        if let split = splitViewController {
+            let controllers = split.viewControllers
+            leaderDetailVC = (controllers[controllers.count-1] as! UINavigationController).topViewController as? LeaderDetailViewController
+        }
 
         fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
+        super.viewWillAppear(animated)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let leader = leaders[indexPath.row]
+                let controller = (segue.destination as! UINavigationController).topViewController as! LeaderDetailViewController
+                controller.leader = leader
+                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                controller.navigationItem.leftItemsSupplementBackButton = true
+            }
+        }
     }
 
     @IBAction func refresh(_ sender: Any) {
@@ -97,51 +116,6 @@ class LeadersTableViewController: UITableViewController {
 
         return cell
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    // MARK: - Table view delegate
 }
